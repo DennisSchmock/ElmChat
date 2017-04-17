@@ -1,0 +1,7 @@
+var _user$project$Msgs$NewChatMessage = function (a) {
+	return {ctor: 'NewChatMessage', _0: a};
+};
+var _user$project$Msgs$UpdateUserMessage = function (a) {
+	return {ctor: 'UpdateUserMessage', _0: a};
+};
+var _user$project$Msgs$PostChatMessage = {ctor: 'PostChatMessage'};

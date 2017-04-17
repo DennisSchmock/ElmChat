@@ -1,0 +1,8 @@
+var _user$project$Models$Model = F2(
+	function (a, b) {
+		return {userMessage: a, chatMessages: b};
+	});
+var _user$project$Models$ChatMessage = F2(
+	function (a, b) {
+		return {command: a, content: b};
+	});

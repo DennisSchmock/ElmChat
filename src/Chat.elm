@@ -3,9 +3,11 @@ module Chat exposing (..)
 import Html exposing (..)
 import Msgs exposing (..)
 import View exposing (view)
-import Models exposing (Model)
-import Update exposing (update)
+import Models exposing (Model,initialModel)
+import Update exposing (..)
 import WebSocket
+import EnDecoders exposing(..)
+
 
 main: Program Never Model Msg
 main =
@@ -18,16 +20,12 @@ main =
 
 init : (Model, Cmd Msg)
 init =
- ( Model "" []
+ ( initialModel
  , Cmd.none
  )
-
-
-
-
 
 
  -- SUBSCRIPTIONS
 subscriptions : Model -> Sub Msg
 subscriptions model =
-  WebSocket.listen "ws://localhost:3000" NewChatMessage
+  WebSocket.listen "ws://localhost:3000" mapInput

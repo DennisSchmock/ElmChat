@@ -1,8 +1,22 @@
-var _user$project$Models$Model = F2(
-	function (a, b) {
-		return {userMessage: a, chatMessages: b};
+var _user$project$Models$initialModel = {
+	userMessage: '',
+	chatMessages: {
+		ctor: '::',
+		_0: {command: '', content: 'Welcome to the chat...', userName: 'System'},
+		_1: {ctor: '[]'}
+	},
+	userName: '',
+	user: _elm_lang$core$Maybe$Nothing
+};
+var _user$project$Models$Model = F4(
+	function (a, b, c, d) {
+		return {userMessage: a, chatMessages: b, userName: c, user: d};
 	});
-var _user$project$Models$ChatMessage = F2(
+var _user$project$Models$User = F2(
 	function (a, b) {
-		return {command: a, content: b};
+		return {displayName: a, email: b};
+	});
+var _user$project$Models$ChatMessage = F3(
+	function (a, b, c) {
+		return {command: a, content: b, userName: c};
 	});

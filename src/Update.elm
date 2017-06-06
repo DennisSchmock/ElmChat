@@ -3,28 +3,59 @@ module Update exposing (..)
 import Msgs exposing (..)
 import Models exposing (Model,ChatMessage)
 import WebSocket
-import Json.Decode as Decode
-import Json.Decode exposing (Decoder, string)
-import Json.Decode.Pipeline exposing (decode, required, requiredAt)
+import Json.Encode as JE
+
 
 update : Msg -> Model -> (Model, Cmd Msg)
-update msg {userMessage, chatMessages} =
+update msg model =
   case msg of
     PostChatMessage ->
-        ( Model "" chatMessages, WebSocket.send "ws://localhost:3000/" userMessage)
+      let
+        payload = JE.object [
+          ("command", JE.string "send")
+          ,("content", JE.string model.userMessage)
+          ,("userName", JE.string model.userName)
+        ]
+
+      in
+        ({ model | userMessage = ""}, WebSocket.send "ws://localhost:3000/" (JE.encode 1 payload)
+       )
 
     UpdateUserMessage newMessage ->
-      (Model newMessage chatMessages, Cmd.none)
+      let
+        newModel =
+          {model|
+            userMessage = newMessage}
+      in
+      (newModel, Cmd.none)
+    UpdateUserName uName ->
+      let newModel =
+        {model| userName = uName}
+      in
+      (newModel,Cmd.none)
 
     NewChatMessage newMessage ->
         let
-          messageDecoder = newMessage
+          newModel =
+            {model| chatMessages = newMessage :: model.chatMessages}
         in
-        (Model userMessage (messageDecoder :: chatMessages), Cmd.none)
-
-
-messageDecoder :  Decoder ChatMessage
-messageDecoder  =
-   decode ChatMessage
-   |> required "command" string
-   |> required "content" string
+          (newModel, Cmd.none)
+        --(Model userMessage (newMessage :: chatMessages), Cmd.none)
+    LoginMessage uName ->
+        let
+          newModel =
+            {model| userName = uName }
+        in
+          (newModel,Cmd.none)
+    Login ->
+      let
+        payload = JE.object [
+          ("command", JE.string "login")
+          ,("content", JE.string model.userName)
+          ,("userName", JE.string model.userName)
+        ]
+      in
+      ({ model | userMessage = ""}, WebSocket.send "ws://localhost:3000/" (JE.encode 1 payload)
+     )
+    NoOp ->
+      (model ,Cmd.none)

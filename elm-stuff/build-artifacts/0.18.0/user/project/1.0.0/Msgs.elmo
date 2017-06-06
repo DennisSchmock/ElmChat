@@ -1,3 +1,11 @@
+var _user$project$Msgs$UpdateUserName = function (a) {
+	return {ctor: 'UpdateUserName', _0: a};
+};
+var _user$project$Msgs$Login = {ctor: 'Login'};
+var _user$project$Msgs$LoginMessage = function (a) {
+	return {ctor: 'LoginMessage', _0: a};
+};
+var _user$project$Msgs$NoOp = {ctor: 'NoOp'};
 var _user$project$Msgs$NewChatMessage = function (a) {
 	return {ctor: 'NewChatMessage', _0: a};
 };

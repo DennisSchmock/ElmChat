@@ -4,71 +4,288 @@ var _user$project$View$viewMessage = function (msg) {
 		{ctor: '[]'},
 		{
 			ctor: '::',
-			_0: _elm_lang$html$Html$text(msg.content),
+			_0: _elm_lang$html$Html$text(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					msg.userName,
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						': ',
+						A2(_elm_lang$core$Basics_ops['++'], msg.content, '\n')))),
 			_1: {ctor: '[]'}
 		});
 };
-var _user$project$View$view = function (model) {
+var _user$project$View$userView = function (string) {
 	return A2(
 		_elm_lang$html$Html$div,
 		{ctor: '[]'},
 		{
 			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$textarea,
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('textarea'),
-					_1: {ctor: '[]'}
-				},
-				A2(
-					_elm_lang$core$List$map,
-					_user$project$View$viewMessage,
-					_elm_lang$core$List$reverse(model.chatMessages))),
+			_0: _elm_lang$html$Html$text(
+				A2(_elm_lang$core$Basics_ops['++'], string, '\n')),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$View$userList = {
+	ctor: '::',
+	_0: 'Dennis',
+	_1: {
+		ctor: '::',
+		_0: 'Henrik',
+		_1: {
+			ctor: '::',
+			_0: 'Nogen Andre',
 			_1: {
 				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$br,
-					{ctor: '[]'},
-					{ctor: '[]'}),
+				_0: 'a',
 				_1: {
 					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$input,
-						{
+					_0: 'dasfsda',
+					_1: {ctor: '[]'}
+				}
+			}
+		}
+	}
+};
+var _user$project$View$_p0 = _rtfeldman$elm_css_helpers$Html_CssHelpers$withNamespace('dreamwriter');
+var _user$project$View$id = _user$project$View$_p0.id;
+var _user$project$View$class = _user$project$View$_p0.$class;
+var _user$project$View$classList = _user$project$View$_p0.classList;
+var _user$project$View$messageInputView = function (model) {
+	return A2(
+		_elm_lang$html$Html$form,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Events$onSubmit(_user$project$Msgs$PostChatMessage),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$input,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$placeholder('message...'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$autofocus(true),
+						_1: {
 							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$placeholder('message...'),
+							_0: _elm_lang$html$Html_Attributes$value(model.userMessage),
 							_1: {
 								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$autofocus(true),
+								_0: _elm_lang$html$Html_Events$onInput(_user$project$Msgs$UpdateUserMessage),
 								_1: {
 									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$value(model.userMessage),
+									_0: _user$project$View$id(
+										{
+											ctor: '::',
+											_0: _user$project$MyCss$MessageInput,
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				},
+				{ctor: '[]'}),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$View$messagesView = function (model) {
+	return A2(
+		_elm_lang$html$Html$textarea,
+		{
+			ctor: '::',
+			_0: _user$project$View$id(
+				{
+					ctor: '::',
+					_0: _user$project$MyCss$ChatArea,
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$readonly(true),
+				_1: {ctor: '[]'}
+			}
+		},
+		A2(
+			_elm_lang$core$List$map,
+			_user$project$View$viewMessage,
+			_elm_lang$core$List$reverse(model.chatMessages)));
+};
+var _user$project$View$loginField = function (model) {
+	var _p1 = model.user;
+	if (_p1.ctor === 'Nothing') {
+		return A2(
+			_elm_lang$html$Html$form,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Events$onSubmit(_user$project$Msgs$Login),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$input,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$placeholder('Enter Username'),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$autofocus(true),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$value(model.userName),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$html$Html_Events$onInput(_user$project$Msgs$UpdateUserName),
 									_1: {
 										ctor: '::',
-										_0: _elm_lang$html$Html_Events$onInput(_user$project$Msgs$UpdateUserMessage),
+										_0: _user$project$View$id(
+											{
+												ctor: '::',
+												_0: _user$project$MyCss$MessageInput,
+												_1: {ctor: '[]'}
+											}),
 										_1: {ctor: '[]'}
 									}
 								}
 							}
+						}
+					},
+					{ctor: '[]'}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$button,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$Login),
+							_1: {ctor: '[]'}
 						},
-						{ctor: '[]'}),
-					_1: {
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('Login'),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}
+			});
+	} else {
+		return _elm_lang$html$Html$text('something');
+	}
+};
+var _user$project$View$userListView = function (string) {
+	return A2(
+		_elm_lang$html$Html$textarea,
+		{
+			ctor: '::',
+			_0: _user$project$View$id(
+				{
+					ctor: '::',
+					_0: _user$project$MyCss$ChatArea,
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$readonly(true),
+				_1: {ctor: '[]'}
+			}
+		},
+		A2(
+			_elm_lang$core$List$map,
+			_user$project$View$userView,
+			_elm_lang$core$List$sort(_user$project$View$userList)));
+};
+var _user$project$View$view = function (model) {
+	return A2(
+		_rundis$elm_bootstrap$Bootstrap_Grid$container,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _rundis$elm_bootstrap$Bootstrap_CDN$stylesheet,
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_rundis$elm_bootstrap$Bootstrap_Grid$row,
+					{ctor: '[]'},
+					{
 						ctor: '::',
 						_0: A2(
-							_elm_lang$html$Html$button,
+							_rundis$elm_bootstrap$Bootstrap_Grid$col,
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$PostChatMessage),
+								_0: _rundis$elm_bootstrap$Bootstrap_Grid_Col$xs8,
 								_1: {ctor: '[]'}
 							},
-							{
+							{ctor: '[]'}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_rundis$elm_bootstrap$Bootstrap_Grid$col,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _user$project$View$loginField(model),
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_rundis$elm_bootstrap$Bootstrap_Grid$row,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: A2(
+								_rundis$elm_bootstrap$Bootstrap_Grid$col,
+								{
+									ctor: '::',
+									_0: _rundis$elm_bootstrap$Bootstrap_Grid_Col$xs2,
+									_1: {ctor: '[]'}
+								},
+								{ctor: '[]'}),
+							_1: {
 								ctor: '::',
-								_0: _elm_lang$html$Html$text('Submit'),
-								_1: {ctor: '[]'}
-							}),
-						_1: {ctor: '[]'}
-					}
+								_0: A2(
+									_rundis$elm_bootstrap$Bootstrap_Grid$col,
+									{
+										ctor: '::',
+										_0: _rundis$elm_bootstrap$Bootstrap_Grid_Col$xs8,
+										_1: {ctor: '[]'}
+									},
+									{
+										ctor: '::',
+										_0: _user$project$View$messagesView(model),
+										_1: {
+											ctor: '::',
+											_0: _user$project$View$messageInputView(model),
+											_1: {ctor: '[]'}
+										}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_rundis$elm_bootstrap$Bootstrap_Grid$col,
+										{
+											ctor: '::',
+											_0: _rundis$elm_bootstrap$Bootstrap_Grid_Col$xs2,
+											_1: {ctor: '[]'}
+										},
+										{
+											ctor: '::',
+											_0: _user$project$View$userListView(_user$project$View$userList),
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								}
+							}
+						}),
+					_1: {ctor: '[]'}
 				}
 			}
 		});

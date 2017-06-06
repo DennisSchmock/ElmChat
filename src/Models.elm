@@ -12,7 +12,7 @@ type alias Model =
  }
 
 type alias User =
-  {displayName : String,
+  {userName : String,
     email : String  }
 
 

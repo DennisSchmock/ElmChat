@@ -5,7 +5,7 @@ import Json.Decode as Decode
 import Json.Decode exposing (Decoder, string)
 import Json.Decode.Pipeline exposing (decode, required, requiredAt,optional)
 import Json.Encode
-import Models exposing (Model,ChatMessage)
+import Models exposing (Model,ChatMessage,User)
 
 -- DECODERS
 mapInput : String -> Msg
@@ -34,6 +34,13 @@ messageDecoder  =
    |> required "command" string
    |> required "content" string
    |> optional "userName" string "User"
+
+
+userDecoder : Decoder User
+userDecoder =
+  decode User
+    |> required "userName" string
+    |> optional "email" string ""
 
 
 --ENCODERS

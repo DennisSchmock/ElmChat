@@ -1,7 +1,7 @@
 module Update exposing (..)
 
 import Msgs exposing (..)
-import Models exposing (Model,ChatMessage)
+import Models exposing (Model,ChatMessage,User)
 import WebSocket
 import Json.Encode as JE
 
@@ -43,8 +43,9 @@ update msg model =
         --(Model userMessage (newMessage :: chatMessages), Cmd.none)
     LoginMessage uName ->
         let
+
           newModel =
-            {model| userName = uName }
+            {model| userName = uName  }
         in
           (newModel,Cmd.none)
     Login ->

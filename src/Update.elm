@@ -43,7 +43,6 @@ update msg model =
         --(Model userMessage (newMessage :: chatMessages), Cmd.none)
     LoginMessage uName ->
         let
-
           newModel =
             {model| userName = uName  }
         in
